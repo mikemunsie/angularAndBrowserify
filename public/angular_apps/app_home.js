@@ -3,11 +3,11 @@ require("../angular_views/home");
 
 (function(){
 
-	var dependencies = [
-		"views_home"
-	];
+  var dependencies = [
+    "views_home"
+  ];
 
-	angular
-		.module("app_home", dependencies);
+  angular
+    .module("app_home", dependencies);
 
 })();

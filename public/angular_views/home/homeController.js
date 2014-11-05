@@ -1,14 +1,14 @@
 (function(){
 
-	angular
-		.module("views_home")
-		.controller("views_home_homeController", homeController);
+  angular
+    .module("views_home")
+    .controller("views_home_homeController", homeController);
 
-	function homeController($scope) {
-		var title = "The Index Page";
+  function homeController($scope) {
+    var title = "The Index Page";
 
-		$scope.title = title;
+    $scope.title = title;
 
-	}
+  }
 
 })();
