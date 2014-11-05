@@ -1,0 +1,1 @@
+!function(module){try{module=angular.module("angularTemplates2JS")}catch(e){module=angular.module("angularTemplates2JS",[])}module.run(["$templateCache",function($templateCache){$templateCache.put("/public/angular_views/home/home.html",'<div ng-controller="views_home_homeController"><h1>{{title}}</h1></div>')}])}();

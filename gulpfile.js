@@ -18,10 +18,17 @@ var ngHtml2Js =     require('gulp-ng-html2js');
 var path =          require('path');
 var plumber =       require('gulp-plumber');
 var Promise =       require('promise');
+var Q =             require('q');
 var shell =         require('gulp-shell');
 var spawn =         require('child_process').spawn;
 var uglify =        require('gulp-uglify');
 var walk =          require('walk');
+
+var devEnvironment = false;
+var templateFolders = [
+  "angular_views",
+  "angular_components"
+];
 
 function helpers_logStart(name) {
   return gulpUtil.log(gulpUtil.colors.green("Started: " + name));
@@ -30,6 +37,47 @@ function helpers_logStart(name) {
 function helpers_logEnd(name) {
   return gulpUtil.log(gulpUtil.colors.blue("(completed) - " + name));
 }
+
+function convertHTMLTemplatesToJS() {
+  helpers_logStart("convertHTMLTemplatesToJS");
+  var promise;
+  var promiseQueue = [];
+
+  // Run through each template folder
+  _.forEach(templateFolders, function(templateFolder) {
+    promise = new Promise(function (fulfil) {
+      gulp
+        .src("./public/" + templateFolder + "/**/*.html")
+        .pipe(minifyHtml({
+          empty: true,
+          spare: true,
+          quotes: true
+        }))
+        .pipe(ngHtml2Js({
+          moduleName: "angularTemplates2JS",
+          prefix: "/public/" + templateFolder + "/"
+        }))
+        .pipe((gulpif(!devEnvironment, uglify({
+          preserveComments: "all",
+          mangle: false
+        }))))
+        .pipe(gulp.dest("./public/js-min/templates/" + templateFolder))
+        .on('end', function() {
+          return fulfil();
+        });
+    });
+    promiseQueue.push(promise);
+  });
+
+  return new Promise(function (fulfil) {
+    Q.all(promiseQueue).then(function() {
+      helpers_logEnd("convertHTMLTemplatesToJS");
+      return fulfil();
+    });
+  });
+
+}
+
 
 // Todo: Read the angular apps folder files
 function browserifyApps() {
@@ -41,6 +89,10 @@ function browserifyApps() {
 	      insertGlobals : false,
 	      debug: false
 	    }))
+      .pipe((gulpif(!devEnvironment, uglify({
+        mangle: false,
+        preserveComments: "all"
+      }))))
 	    .pipe(gulp.dest('./public/js-min/'))
 	    .on('end', function() {
         helpers_logEnd("Browserify Angular Apps.");
@@ -50,7 +102,6 @@ function browserifyApps() {
 }
 
 gulp.task('default', function () {
-	browserifyApps().then(function() {
-
-	});
+	convertHTMLTemplatesToJS()
+    .then(browserifyApps);
 });

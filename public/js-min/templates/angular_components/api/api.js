@@ -1,0 +1,1 @@
+!function(module){try{module=angular.module("angularTemplates2JS")}catch(e){module=angular.module("angularTemplates2JS",[])}module.run(["$templateCache",function($templateCache){$templateCache.put("/public/angular_components/api/api.html","<h3>API</h3>")}])}();

@@ -25,6 +25,7 @@
     "gulp-watch": "*",
     "lodash-node": "*",
     "promise": "*",
+    "q": "*",
     "walk": "2.3.3"
   },
   "devDependencies": {

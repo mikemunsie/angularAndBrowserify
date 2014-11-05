@@ -1,7 +1,8 @@
 (function(){
 
   var dependencies = [
-    "components_services"
+    "components_services",
+    "angularTemplates2JS"
   ];
 
   angular

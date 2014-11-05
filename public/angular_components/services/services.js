@@ -1,10 +1,10 @@
 (function(){
 
-	var dependencies = [
-		"components_api"
-	];
+  var dependencies = [
+    "components_api"
+  ];
 
-	angular
-		.module("components_services", dependencies);
+  angular
+    .module("components_services", dependencies);
 
 })();
