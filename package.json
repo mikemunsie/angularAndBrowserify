@@ -9,6 +9,7 @@
     "array-extended": "*",
     "extend": "*",
     "gulp": "*",
+    "gulp-browserify": "*",
     "gulp-clean": "0.2.4",
     "gulp-compass": "1.2.0",
     "gulp-concat": "2.3.4",

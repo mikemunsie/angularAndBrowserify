@@ -1,0 +1,27 @@
+{
+  "name": "angularAndBrowserify",
+  "version": "0.0.0",
+  "private": "true",
+  "dependencies": {
+    "angularjs": "1.3.0",
+    "angular-animate": "1.3.0",
+    "angular-dialog-service": "5.2.5",
+    "angular-local-storage": "0.1.3",
+    "angular-mocks": "1.3.0",
+    "angular-resource": "1.3.0",
+    "angular-route": "1.3.0",
+    "angular-sanitize": "1.2.26",
+    "angularjs-toaster": "0.4.8",
+    "bootstrap-sass-official": "3.3.0",
+    "bourbon": "4.0.2",
+    "compass-mixins": "1.0.1",
+    "d3": "3.4.13",
+    "font-awesome": "4.2.0",
+    "inuit-normalize": "3.0.1",
+    "lodash": "2.4.1",
+    "ng-grid": "2.0.13",
+    "perfect-scrollbar": "0.5.6",
+    "susy": "2.1.3",
+    "SyntaxHighlighter": "3.0.83"
+  }
+}
