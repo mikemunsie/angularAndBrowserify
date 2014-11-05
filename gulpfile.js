@@ -81,20 +81,20 @@ function convertHTMLTemplatesToJS() {
 
 // Todo: Read the angular apps folder files
 function browserifyApps() {
-	helpers_logStart("Browserify Angular Apps.");
+  helpers_logStart("Browserify Angular Apps.");
   return new Promise(function (fulfil) {
-		gulp
-			.src('./public/angular_apps/app_home.js')
-	    .pipe(browserify({
-	      insertGlobals : false,
-	      debug: false
-	    }))
+    gulp
+      .src('./public/angular_apps/app_home.js')
+      .pipe(browserify({
+        insertGlobals : false,
+        debug: false
+      }))
       .pipe((gulpif(!devEnvironment, uglify({
         mangle: false,
         preserveComments: "all"
       }))))
-	    .pipe(gulp.dest('./public/js-min/'))
-	    .on('end', function() {
+      .pipe(gulp.dest('./public/js-min/'))
+      .on('end', function() {
         helpers_logEnd("Browserify Angular Apps.");
         return fulfil();
       });
@@ -102,6 +102,6 @@ function browserifyApps() {
 }
 
 gulp.task('default', function () {
-	convertHTMLTemplatesToJS()
+  convertHTMLTemplatesToJS()
     .then(browserifyApps);
 });
